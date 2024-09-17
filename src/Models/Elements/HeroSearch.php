@@ -1,0 +1,147 @@
+<?php
+
+namespace NSWDPC\Waratah\Typesense\Models\Elements;
+
+use NSWDPC\Typesense\Elemental\Models\Elements\TypesenseSearchElement;
+use SilverStripe\AssetAdmin\Forms\UploadField;
+use SilverStripe\Assets\Image;
+use SilverStripe\Forms\ListboxField;
+use SilverStripe\Forms\TextField;
+use SilverStripe\LinkField\Form\MultiLinkField;
+use SilverStripe\LinkField\Models\Link;
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\TagField\StringTagField;
+use SilverStripe\View\ArrayData;
+
+
+/**
+ * Provides a hero search element conforming to the NSW Design System Hero Search Component
+ */
+class HeroSearch extends TypesenseSearchElement {
+
+    private static string $table_name = 'TypesenseHeroSearch';
+
+    private static string $singular_name = 'Hero Search (NSWDS)';
+
+    private static string $plural_name = 'Hero Search (NSWDS)';
+
+    private static array $has_one = [
+        'BackgroundImage' => Image::class
+    ];
+
+    private static array $db = [
+        'Title' => 'Varchar',
+        'Subtitle' => 'Varchar',
+        'SuggestedTerms' => 'Text'
+    ];
+
+    private static array $owns = [
+        'Links',
+        'BackgroundImage'
+    ];
+
+    private static array $has_many = [
+        'Links' => Link::class . '.Owner',
+    ];
+
+    private static array $cascade_deletes = [
+        'Links'
+    ];
+
+    private static array $cascade_duplicates = [
+        'Links'
+    ];
+
+    /**
+     * @inheritdoc
+     */
+    public function getType() {
+        return _t(static::class . '.BlockType', $this->i18n_singular_name());
+    }
+
+    /**
+     * Update CMS fields
+     */
+    public function getCmsFields() {
+        $fields = parent::getCmsFields();
+        $fields->removeByName(['Links']);
+        $fields->addFieldsToTab(
+            'Root.Main',
+            [
+                TextField::create(
+                    'Subtitle',
+                    _t(self::class . '.SUBTITLE', 'Subtitle')
+                ),
+                StringTagField::create(
+                    'SuggestedTerms',
+                    _t(self::class . '.QUICK_SEARCH_TERMS', 'Quick search terms'),
+                    [],
+                    $this->getSuggestedTermsAsArray() // current
+                )->setCanCreate(true)
+                ->setDescription(
+                    _t(self::class . '.QUICK_SEARCH_TERMS_DESCRIPTION', 'Quick search terms will only display if no links are present'),
+                ),
+                UploadField::create(
+                    'BackgroundImage',
+                    _t(self::class . '.BACKGROUND_IMAGE', 'Background image')
+                )->setAllowedExtensions(['jpg','jpeg','png'])
+                ->setIsMultiUpload(false)
+                ->setFolderName('searchbg')
+            ]
+        );
+        $fields->insertAfter(
+            'Subtitle',
+            MultiLinkField::create(
+                'Links',
+                _t(self::class . '.LINKS', 'Links')
+            )
+        );
+        return $fields;
+    }
+
+    public function getSuggestedTermsAsArray(): array {
+        $list = explode(",", $this->SuggestedTerms ?? '');
+        return array_filter(array_values($list));
+    }
+
+    public function getLinkedSuggestedTerms(): ArrayList {
+        $list = ArrayList::create();
+        $page = $this->SearchPage();
+        if(!$page || !$page->isInDB()) {
+            return $list;
+        }
+        $terms = $this->getSuggestedTermsAsArray();
+        var_dump($terms);
+        foreach($terms as $term) {
+            $term = strip_tags(trim((string) $term));
+            var_dump($term);
+            $list->push(
+                ArrayData::create([
+                    'Title' => $term,
+                    'Link' => $page->Link('?q=' . $term)
+                ])
+            );
+        }
+        return $list;
+    }
+
+    /**
+     * Render element into template
+     */
+    public function forTemplate($holder = true) {
+        $templates = $this->getRenderTemplates();
+        $templateData = ArrayData::create([
+            'Title' => $this->Title,
+            'Subtitle' => $this->Subtitle,
+            'Form' => $this->SearchForm(),
+            'Image' => $this->BackgroundImage(),
+            'Links' => $this->Links(),
+            'Terms' => $this->getLinkedSuggestedTerms()
+        ]);
+        if ($templates) {
+            return $this->customise($templateData)->renderWith($templates);
+        }
+        return null;
+    }
+
+}

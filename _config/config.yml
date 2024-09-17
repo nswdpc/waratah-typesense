@@ -1,3 +1,9 @@
 ---
 Name: nswdpc-waratah-typesense
 ---
+# Add element to allowed elements
+Page:
+  allowed_elements:
+    - 'NSWDPC\Waratah\Typesense\Models\Elements\HeroSearch'
+  allowed_top_elements:
+    'NSWDPC\Waratah\Typesense\Models\Elements\HeroSearch': ''
