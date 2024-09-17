@@ -10,7 +10,6 @@ use SilverStripe\Forms\TextField;
 use SilverStripe\LinkField\Form\MultiLinkField;
 use SilverStripe\LinkField\Models\Link;
 use SilverStripe\ORM\ArrayList;
-use SilverStripe\TagField\StringTagField;
 use SilverStripe\View\ArrayData;
 
 
@@ -18,6 +17,8 @@ use SilverStripe\View\ArrayData;
  * Provides a hero search element conforming to the NSW Design System Hero Search Component
  */
 class HeroSearch extends TypesenseSearchElement {
+
+    private static string $icon = 'font-icon-search';
 
     private static string $table_name = 'TypesenseHeroSearch';
 
@@ -72,14 +73,14 @@ class HeroSearch extends TypesenseSearchElement {
                     'Subtitle',
                     _t(self::class . '.SUBTITLE', 'Subtitle')
                 ),
-                StringTagField::create(
+                TextField::create(
                     'SuggestedTerms',
-                    _t(self::class . '.QUICK_SEARCH_TERMS', 'Quick search terms'),
-                    [],
-                    $this->getSuggestedTermsAsArray() // current
-                )->setCanCreate(true)
-                ->setDescription(
-                    _t(self::class . '.QUICK_SEARCH_TERMS_DESCRIPTION', 'Quick search terms will only display if no links are present'),
+                    _t(self::class . '.QUICK_SEARCH_TERMS', 'Quick search terms (comma separated)')
+                )->setDescription(
+                    _t(
+                        self::class . '.QUICK_SEARCH_TERMS_DESCRIPTION',
+                        'Quick search terms will only display if no links are present'
+                    )
                 ),
                 UploadField::create(
                     'BackgroundImage',
@@ -111,10 +112,8 @@ class HeroSearch extends TypesenseSearchElement {
             return $list;
         }
         $terms = $this->getSuggestedTermsAsArray();
-        var_dump($terms);
         foreach($terms as $term) {
             $term = strip_tags(trim((string) $term));
-            var_dump($term);
             $list->push(
                 ArrayData::create([
                     'Title' => $term,
