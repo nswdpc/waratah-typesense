@@ -19,7 +19,7 @@
     },
     "require": {
         "nswdpc/waratah": "*",
-        "nswdpc/silverstripe-typesense-cms": "*",
+        "nswdpc/silverstripe-typesense-elemental": "*",
         "silverstripe/framework" : "^5"
     },
     "require-dev": {
