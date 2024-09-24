@@ -5,5 +5,11 @@ Name: nswdpc-waratah-typesense
 Page:
   allowed_elements:
     - 'NSWDPC\Waratah\Typesense\Models\Elements\HeroSearch'
+    - 'NSWDPC\Typesense\Elemental\Models\Elements\TypesenseSearchElement'
+    - 'NSWDPC\Typesense\Elemental\Models\Elements\TypesenseAdvancedSearchElement'
   allowed_top_elements:
     'NSWDPC\Waratah\Typesense\Models\Elements\HeroSearch': ''
+SilverStripe\Core\Injector\Injector:
+  NSWDPC\Search\Forms\Forms\AdvancedSearchForm:
+    # provide an updated advanced search form for waratah stuff
+    class: NSWDPC\Waratah\Typesense\Forms\AdvancedSearchForm
