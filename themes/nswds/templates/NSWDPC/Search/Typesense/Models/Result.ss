@@ -1,0 +1,1 @@
+<% include nswds/ListItem ListItem_MenuTitle=$MenuTitle, ListItem_Title=$Title, ListItem_LinkURL=$Link, ListItem_Abstract=$Abstract, ListItem_Content=$Description, ListItem_Date=$Date, ListItem_Tags=$Terms, ListItem_Image=$Image, ListItem_ImageURL=$ImageURL, ListItem_ImageAlt=$ImageAlt, ListItem_PrimaryLabel=$Label %>

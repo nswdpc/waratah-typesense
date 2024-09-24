@@ -13,3 +13,11 @@ SilverStripe\Core\Injector\Injector:
   NSWDPC\Search\Forms\Forms\AdvancedSearchForm:
     # provide an updated advanced search form for waratah stuff
     class: NSWDPC\Waratah\Typesense\Forms\AdvancedSearchForm
+NSWDPC\Typesense\Elemental\Models\Elements\TypesenseSearchElement:
+  search_results_template: ''
+  search_result_template: ''
+  search_form_template: ''
+NSWDPC\Typesense\Elemental\Models\Elements\TypesenseAdvancedSearchElement:
+  search_results_template: ''
+  search_result_template: ''
+  search_form_template: ''

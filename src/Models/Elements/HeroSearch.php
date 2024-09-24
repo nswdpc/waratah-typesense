@@ -132,7 +132,7 @@ class HeroSearch extends TypesenseSearchElement {
         $templateData = ArrayData::create([
             'Title' => $this->Title,
             'Subtitle' => $this->Subtitle,
-            'Form' => $this->SearchForm(),
+            'Form' => $this->getController()->SearchForm(),
             'Image' => $this->BackgroundImage(),
             'Links' => $this->Links(),
             'Terms' => $this->getLinkedSuggestedTerms()
