@@ -1,1 +1,1 @@
-<% include NSWDPC/Waratah/PageSearchResults UseAdvancedSearch=$UseAdvancedSearch %>
+<% include NSWDPC/Waratah/PageSearchResults Results=$Results, SearchQuery=$SearchQuery, UseAdvancedSearch=$UseAdvancedSearch %>
