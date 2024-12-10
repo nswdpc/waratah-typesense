@@ -8,9 +8,8 @@
     <% end_if %>
 
     <% loop $Results %>
-        <% with $TypesenseSearchResult %>
-        <% include nswds/ListItem ListItem_MenuTitle=$MenuTitle, ListItem_Title=$Title, ListItem_LinkURL=$Link, ListItem_Abstract=$Abstract, ListItem_Date=$Date, ListItem_Tags=$Labels, ListItem_Image=$Image, ListItem_PrimaryLabel=$Label %>
-        <% end_with %>
+        <%-- see Result.ss template --%>
+        {$Me}
     <% end_loop %>
 
     <% include nswds/Pagination Pagination_PaginatedItems=$Results %>
