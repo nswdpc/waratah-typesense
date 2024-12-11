@@ -1,6 +1,9 @@
 ---
 Name: nswdpc-waratah-typesense
 ---
+SilverStripe\CMS\Model\SiteTree:
+  extensions:
+    UpdateTypesenseSearchData: NSWDPC\Waratah\Typesense\Extensions\SiteTreeExtension
 # Add element to allowed elements
 Page:
   allowed_elements:
