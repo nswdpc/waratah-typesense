@@ -9,7 +9,7 @@ use SilverStripe\Core\Config\Configurable;
 use SilverStripe\View\TemplateGlobalProvider;
 
 /**
- * Provides a hero search element conforming to the NSW Design System Hero Search Component
+ * Provides configuration for search forms and global search forms
  */
 class Configuration implements TemplateGlobalProvider {
 
