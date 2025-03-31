@@ -18,8 +18,8 @@
         "key" : "value"
     },
     "require": {
-        "nswdpc/waratah": "*",
-        "nswdpc/silverstripe-typesense-elemental": "*",
+        "nswdpc/waratah": "^2",
+        "nswdpc/silverstripe-typesense-elemental": "^0.1",
         "silverstripe/asset-admin": "*",
         "silverstripe/linkfield": "*",
         "silverstripe/framework": "^5",
