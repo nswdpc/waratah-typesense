@@ -5,13 +5,11 @@ namespace NSWDPC\Waratah\Typesense\Models\Elements;
 use NSWDPC\Typesense\Elemental\Models\Elements\TypesenseSearchElement;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
-use SilverStripe\Forms\ListboxField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\LinkField\Form\MultiLinkField;
 use SilverStripe\LinkField\Models\Link;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\View\ArrayData;
-
 
 /**
  * Provides a hero search element conforming to the NSW Design System Hero Search Component
@@ -22,8 +20,8 @@ use SilverStripe\View\ArrayData;
  * @method \SilverStripe\Assets\Image BackgroundImage()
  * @method \SilverStripe\ORM\HasManyList<\SilverStripe\LinkField\Models\Link> Links()
  */
-class HeroSearch extends TypesenseSearchElement {
-
+class HeroSearch extends TypesenseSearchElement
+{
     private static string $icon = 'font-icon-search';
 
     private static string $table_name = 'TypesenseHeroSearch';
@@ -63,7 +61,8 @@ class HeroSearch extends TypesenseSearchElement {
      * @inheritdoc
      */
     #[\Override]
-    public function getType() {
+    public function getType()
+    {
         return _t(static::class . '.BlockType', $this->i18n_singular_name());
     }
 
@@ -71,7 +70,8 @@ class HeroSearch extends TypesenseSearchElement {
      * Update CMS fields
      */
     #[\Override]
-    public function getCmsFields() {
+    public function getCmsFields()
+    {
         $fields = parent::getCmsFields();
         $fields->removeByName(['Links']);
         $fields->addFieldsToTab(
@@ -108,20 +108,22 @@ class HeroSearch extends TypesenseSearchElement {
         return $fields;
     }
 
-    public function getSuggestedTermsAsArray(): array {
+    public function getSuggestedTermsAsArray(): array
+    {
         $list = explode(",", $this->SuggestedTerms ?? '');
         return array_filter(array_values($list));
     }
 
-    public function getLinkedSuggestedTerms(): ArrayList {
+    public function getLinkedSuggestedTerms(): ArrayList
+    {
         $list = ArrayList::create();
         $page = $this->SearchPage();
-        if(!$page || !$page->isInDB()) {
+        if (!$page || !$page->isInDB()) {
             return $list;
         }
 
         $terms = $this->getSuggestedTermsAsArray();
-        foreach($terms as $term) {
+        foreach ($terms as $term) {
             $term = strip_tags(trim((string) $term));
             $list->push(
                 ArrayData::create([
@@ -138,7 +140,8 @@ class HeroSearch extends TypesenseSearchElement {
      * Render element into template
      */
     #[\Override]
-    public function forTemplate($holder = true) {
+    public function forTemplate($holder = true)
+    {
         $templates = $this->getRenderTemplates();
         $templateData = ArrayData::create([
             'Title' => $this->Title,

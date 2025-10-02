@@ -8,8 +8,8 @@ use NSWDPC\Waratah\Traits\FilterFormTrait;
 /**
  * Waratah smarts for the advanced search form
  */
-class AdvancedSearchForm extends BaseAdvancedSearchForm {
-
+class AdvancedSearchForm extends BaseAdvancedSearchForm
+{
     use FilterFormTrait;
 
 }
