@@ -15,6 +15,12 @@ use SilverStripe\View\ArrayData;
 
 /**
  * Provides a hero search element conforming to the NSW Design System Hero Search Component
+ * @property string $Title
+ * @property ?string $Subtitle
+ * @property ?string $SuggestedTerms
+ * @property int $BackgroundImageID
+ * @method \SilverStripe\Assets\Image BackgroundImage()
+ * @method \SilverStripe\ORM\HasManyList<\SilverStripe\LinkField\Models\Link> Links()
  */
 class HeroSearch extends TypesenseSearchElement {
 
@@ -56,6 +62,7 @@ class HeroSearch extends TypesenseSearchElement {
     /**
      * @inheritdoc
      */
+    #[\Override]
     public function getType() {
         return _t(static::class . '.BlockType', $this->i18n_singular_name());
     }
@@ -63,6 +70,7 @@ class HeroSearch extends TypesenseSearchElement {
     /**
      * Update CMS fields
      */
+    #[\Override]
     public function getCmsFields() {
         $fields = parent::getCmsFields();
         $fields->removeByName(['Links']);
@@ -111,6 +119,7 @@ class HeroSearch extends TypesenseSearchElement {
         if(!$page || !$page->isInDB()) {
             return $list;
         }
+
         $terms = $this->getSuggestedTermsAsArray();
         foreach($terms as $term) {
             $term = strip_tags(trim((string) $term));
@@ -121,12 +130,14 @@ class HeroSearch extends TypesenseSearchElement {
                 ])
             );
         }
+
         return $list;
     }
 
     /**
      * Render element into template
      */
+    #[\Override]
     public function forTemplate($holder = true) {
         $templates = $this->getRenderTemplates();
         $templateData = ArrayData::create([
@@ -140,6 +151,7 @@ class HeroSearch extends TypesenseSearchElement {
         if ($templates) {
             return $this->customise($templateData)->renderWith($templates);
         }
+
         return null;
     }
 

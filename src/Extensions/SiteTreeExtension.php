@@ -6,6 +6,7 @@ use SilverStripe\Core\Extension;
 
 /**
  * Waratah smarts for the advanced search form
+ * @extends \SilverStripe\Core\Extension<(\SilverStripe\CMS\Model\SiteTree & static)>
  */
 class SiteTreeExtension extends Extension {
 

@@ -19,7 +19,6 @@ class Configuration implements TemplateGlobalProvider {
      * Provide a global search form
      */
     public static function get_global_search_form(): ?SearchForm {
-        $form = null;
         if($searchPage = TypesenseSearchPage::get()->filter(['IsGlobalSearch' => 1])->first()) {
             $controller = TypesenseSearchPageController::create($searchPage);
             return SearchForm::create(
