@@ -111,7 +111,7 @@ class HeroSearch extends TypesenseSearchElement
     public function getSuggestedTermsAsArray(): array
     {
         $list = explode(",", $this->SuggestedTerms ?? '');
-        return array_filter(array_values($list));
+        return array_filter($list);
     }
 
     public function getLinkedSuggestedTerms(): ArrayList
