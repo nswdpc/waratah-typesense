@@ -16,7 +16,7 @@ class SiteTreeExtension extends Extension
     public function afterGetTypesenseSearchResult(array &$data): void
     {
         $owner = $this->getOwner();
-        if ($lastUpdated = $owner->PageLastUpdated()) {
+        if (($owner instanceof \Page) && ($lastUpdated = $owner->PageLastUpdated())) {
             $data['Date'] = $lastUpdated->Human;
         }
     }
