@@ -14,18 +14,12 @@
             "role": "Developer"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://codeberg.org/codemdev/silverstripe-typesense.git"
-        }
-    ],
     "support": {
         "key": "value"
     },
     "require": {
         "nswdpc/waratah": "^2",
-        "nswdpc/silverstripe-typesense-elemental": "dev-dev-stan-modules as 0.2.9999",
+        "nswdpc/silverstripe-typesense-elemental": "*",
         "silverstripe/asset-admin": "*",
         "silverstripe/linkfield": "*",
         "silverstripe/framework": "^5",
