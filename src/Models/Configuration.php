@@ -11,17 +11,18 @@ use SilverStripe\View\TemplateGlobalProvider;
 /**
  * Provides configuration for search forms and global search forms
  */
-class Configuration implements TemplateGlobalProvider {
-
+class Configuration implements TemplateGlobalProvider
+{
     use Configurable;
 
     /**
      * Provide a global search form
      */
-    public static function get_global_search_form(): ?SearchForm {
-        $form = null;
-        if($searchPage = TypesenseSearchPage::get()->filter(['IsGlobalSearch' => 1])->first()) {
+    public static function get_global_search_form(): ?SearchForm
+    {
+        if ($searchPage = TypesenseSearchPage::get()->filter(['IsGlobalSearch' => 1])->first()) {
             $controller = TypesenseSearchPageController::create($searchPage);
+            // @phpstan-ignore return.type
             return SearchForm::create(
                 $controller,
                 'GlobalSearchForm'
