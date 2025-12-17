@@ -7,6 +7,7 @@ use NSWDPC\Waratah\Traits\FilterFormTrait;
 
 /**
  * Waratah smarts for the advanced search form
+ * triggers the FilterForm handling on the advanced search form
  */
 class AdvancedSearchForm extends BaseAdvancedSearchForm
 {
