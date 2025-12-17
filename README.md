@@ -2,21 +2,27 @@
 
 Provides support for integrating Typesense search with NSW websites
 
-## Requirements
+## Usage
+
+* [Documentation](./docs/en/001_index.md)
+* Add a hero search element to a page
+* Save as draft
+* Test search
+* Publish the page
 
 ## Installation
+
+```sh
+composer require nswdpc/waratah-typesense
+```
 
 ## License
 
 [BSD-3-Clause](./LICENSE.md)
 
-## Documentation
-
-* [Documentation](./docs/en/001_index.md)
-
 ## Configuration
 
-> Add project configuration examples
+This module relies on a functional Typesense search server setup.
 
 ## Maintainers
 
