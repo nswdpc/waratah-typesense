@@ -5,7 +5,7 @@ namespace NSWDPC\Waratah\Typesense\Extensions;
 use SilverStripe\Core\Extension;
 
 /**
- * Waratah smarts for the advanced search form
+ * Provides an extension to manage SiteTree search and results
  * @extends \SilverStripe\Core\Extension<(\SilverStripe\CMS\Model\SiteTree & static)>
  */
 class SiteTreeExtension extends Extension
