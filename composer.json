@@ -19,7 +19,7 @@
     },
     "require": {
         "nswdpc/waratah": "^2",
-        "nswdpc/silverstripe-typesense-elemental": "*",
+        "nswdpc/silverstripe-typesense-elemental": "dev-feat-decouple-client",
         "silverstripe/asset-admin": "*",
         "silverstripe/linkfield": "*",
         "silverstripe/framework": "^5",
