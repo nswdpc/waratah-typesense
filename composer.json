@@ -25,7 +25,7 @@
     },
     "require": {
         "nswdpc/waratah": "^2",
-        "nswdpc/silverstripe-typesense-elemental": "dev-main",
+        "nswdpc/silverstripe-typesense-elemental": "^0.3",
         "silverstripe/asset-admin": "*",
         "silverstripe/linkfield": "*",
         "silverstripe/framework": "^5",
