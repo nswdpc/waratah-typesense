@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NSWDPC\Waratah\Typesense\Forms;
 
 use NSWDPC\Search\Forms\Forms\AdvancedSearchForm as BaseAdvancedSearchForm;
