@@ -140,7 +140,7 @@ class HeroSearch extends TypesenseSearchElement
      * Render element into template
      */
     #[\Override]
-    public function forTemplate($holder = true)
+    public function forTemplate($holder = true): string
     {
         $templates = $this->getRenderTemplates();
         /** @var \NSWDPC\Typesense\Elemental\Controllers\TypesenseSearchElementController $controller */
@@ -157,7 +157,7 @@ class HeroSearch extends TypesenseSearchElement
             return $this->customise($templateData)->renderWith($templates);
         }
 
-        return null;
+        return '';
     }
 
 }
