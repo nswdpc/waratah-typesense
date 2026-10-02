@@ -14,7 +14,6 @@ use SilverStripe\Dev\SapphireTest;
  */
 class SiteTreeExtensionTest extends SapphireTest
 {
-
     protected $usesDatabase = true;
 
     public function testAfterGetTypesenseSearchResultAddsHumanDateForPages(): void
