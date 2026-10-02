@@ -22,7 +22,7 @@
         "nswdpc/silverstripe-typesense-elemental": "dev-ss6",
         "silverstripe/asset-admin": "^3",
         "silverstripe/linkfield": "^5",
-        "silverstripe/framework": "^5",
+        "silverstripe/framework": "^6",
         "silverstripe/tagfield": "^4"
     },
     "require-dev": {
@@ -41,6 +41,13 @@
             ]
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "NSWDPC\\Waratah\\Typesense\\Tests\\": [
+                "tests/php/"
+            ]
+        }
+    },
     "scripts": {
         "phpstan-analyse": "./vendor/bin/phpstan analyse --ansi --no-progress --no-interaction --configuration vendor/nswdpc/ci-files/phpstan/.phpstan.silverstripe.neon src/ tests/",
         "rector-dryrun": "./vendor/bin/rector process --dry-run --ansi --config vendor/nswdpc/ci-files/rector/.rector.silverstripe_6_83.php src/ tests/",
@@ -56,6 +63,8 @@
             "phpstan/extension-installer": true
         }
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "extra": {
         "project-files-installed": [
             ".htaccess",
@@ -70,7 +79,5 @@
             "index.php",
             "web.config"
         ]
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
