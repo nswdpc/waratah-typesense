@@ -128,7 +128,7 @@ class HeroSearch extends TypesenseSearchElement
             $list->push(
                 ArrayData::create([
                     'Title' => $term,
-                    'Link' => $page->Link('?q=' . $term)
+                    'Link' => $page->Link('?' . http_build_query(['q' => $term]))
                 ])
             );
         }
