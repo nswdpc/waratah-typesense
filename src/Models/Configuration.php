@@ -30,6 +30,7 @@ class Configuration implements TemplateGlobalProvider
             ->setFormAction($controller->Link())
             ->disableSecurityToken();
         }
+
         return null;
     }
 
