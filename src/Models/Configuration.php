@@ -2,6 +2,7 @@
 
 namespace NSWDPC\Waratah\Typesense\Models;
 
+use NSWDPC\Search\Forms\Models\SiteSearchChoice;
 use NSWDPC\Typesense\CMS\Models\TypesenseSearchPage;
 use NSWDPC\Typesense\CMS\Controllers\TypesenseSearchPageController;
 use NSWDPC\Search\Forms\Forms\SearchForm;
@@ -15,20 +16,22 @@ class Configuration implements TemplateGlobalProvider
 {
     use Configurable;
 
+    private static string $global_search_label = 'Typesense search';
+
+    protected static ?SearchForm $global_search_form = null;
+
     /**
-     * Provide a global search form
+     * Provide a global search form, only if this provider is the global search provider
      */
     public static function get_global_search_form(): ?SearchForm
     {
-        if ($searchPage = TypesenseSearchPage::get()->filter(['IsGlobalSearch' => 1])->first()) {
+        if(!is_null(self::$global_search_form)) {
+            return self::$global_search_form;
+        }
+        if((SiteSearchChoice::getGlobalProvider() === self::class) && ($searchPage = TypesenseSearchPage::get()->filter(['IsGlobalSearch' => 1])->first())) {
             $controller = TypesenseSearchPageController::create($searchPage);
-            // @phpstan-ignore return.type
-            return SearchForm::create(
-                $controller,
-                'GlobalSearchForm'
-            )->setFormMethod('GET')
-            ->setFormAction($controller->Link())
-            ->disableSecurityToken();
+            self::$global_search_form = SiteSearchChoice::getGlobalSearchForm($controller, 'typesensesearch');
+            return self::$global_search_form;
         }
 
         return null;
@@ -39,10 +42,13 @@ class Configuration implements TemplateGlobalProvider
      */
     public static function get_template_global_variables()
     {
-        return [
-            'SearchForm' => 'get_global_search_form',// provided for BC
-            'GlobalSearchForm' => 'get_global_search_form'
-        ];
+        $vars = [];
+        if(static::get_global_search_form()) {
+            $vars = [
+                'GlobalSearchForm' => 'get_global_search_form'
+            ];
+        }
+        return $vars;
     }
 
 
