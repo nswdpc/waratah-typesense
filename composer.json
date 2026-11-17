@@ -18,7 +18,7 @@
         "key": "value"
     },
     "require": {
-        "nswdpc/waratah": "^3",
+        "nswdpc/waratah": "dev-ss6 as 3.0.9999",
         "nswdpc/silverstripe-typesense-elemental": "dev-ss6",
         "silverstripe/asset-admin": "^3",
         "silverstripe/linkfield": "^5",
