@@ -24,3 +24,11 @@ NSWDPC\Typesense\Elemental\Models\Elements\TypesenseAdvancedSearchElement:
   search_results_template: ''
   search_result_template: ''
   search_form_template: ''
+---
+Name: nswdpc-waratah-typesense-globalsearch
+After:
+  - '#nswdpc-search-forms-providers'
+---
+NSWDPC\Search\Forms\Models\SiteSearchChoice:
+  global_search_providers:
+    TypesenseSearch: NSWDPC\Waratah\Typesense\Models\Configuration

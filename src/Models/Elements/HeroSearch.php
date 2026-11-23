@@ -8,8 +8,8 @@ use SilverStripe\Assets\Image;
 use SilverStripe\Forms\TextField;
 use SilverStripe\LinkField\Form\MultiLinkField;
 use SilverStripe\LinkField\Models\Link;
-use SilverStripe\ORM\ArrayList;
-use SilverStripe\View\ArrayData;
+use SilverStripe\Model\List\ArrayList;
+use SilverStripe\Model\ArrayData;
 
 /**
  * Provides a hero search element conforming to the NSW Design System Hero Search Component
@@ -140,7 +140,7 @@ class HeroSearch extends TypesenseSearchElement
      * Render element into template
      */
     #[\Override]
-    public function forTemplate($holder = true)
+    public function forTemplate($holder = true): string
     {
         $templates = $this->getRenderTemplates();
         /** @var \NSWDPC\Typesense\Elemental\Controllers\TypesenseSearchElementController $controller */
@@ -157,7 +157,7 @@ class HeroSearch extends TypesenseSearchElement
             return $this->customise($templateData)->renderWith($templates);
         }
 
-        return null;
+        return '';
     }
 
 }
